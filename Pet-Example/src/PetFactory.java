@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 public class PetFactory {
 
+    private Scanner scanner = new Scanner(System.in);
+
     /**
      * This method runs the whole pet factory. This method allows you to select one of the following:
      * add, print, update, remove, and finish the program.
@@ -256,12 +258,30 @@ public class PetFactory {
     private static Pet validUpdate(String update, Pet pet, Scanner stdin){
         String validatedChoice = "";
 
+        /**
+         * Pet pet: (pet object)
+         *  -type: dog
+         *  -name: shawn
+         *  -age: 28
+         *  -color: white
+         *
+         *  Name Change Example:
+         *      -you want to update shawn to peanut
+         *      -currently your pet object's name is shawn
+         *      -the pet object you wrote has a method to setName(String name){...}
+         *      -you want to use the pet oject method setName to "update" your current
+         *      pet object's name.
+         *      -pet.setName("peanut");
+         */
+
         switch(update.toLowerCase()){
             case "1", "name" ->{
+                System.out.println("Your pet's name is currently: " + pet.getName());
                 System.out.println("What name would you like them now: ");
                 pet.setName(stdin.nextLine());
             }
             case "2", "age" -> {
+                System.out.println("Your pet's age is currently: " + pet.getAge());
                 System.out.println("What age would you like them now: ");
                 String updatedAge = stdin.nextLine();
                 while(!validNumber(updatedAge)){
@@ -271,6 +291,7 @@ public class PetFactory {
                 pet.setAge(Integer.parseInt(updatedAge));
             }
             case "3", "color" -> {
+                System.out.println("Your pet's color is currently: " + pet.getColor());
                 System.out.println("What color would you like them now: ");
                 pet.setColor(stdin.nextLine());
             }
